@@ -146,6 +146,11 @@ inputs:
     description: "The identifier to use for pre-releases"
     default: "rc"
     required: false
+  
+  append-file:
+    description: "Preserve releases in changelog"
+    default: "false"
+    required: false
 
 outputs:
   changelog:

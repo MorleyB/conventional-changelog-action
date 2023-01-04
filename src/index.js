@@ -35,6 +35,7 @@ async function run() {
     const preCommitFile = core.getInput('pre-commit')
     const outputFile = core.getInput('output-file')
     const releaseCount = core.getInput('release-count')
+    const appendFile = core.getInput('append-file')
     const versionFile = core.getInput('version-file')
     const versionPath = core.getInput('version-path')
     const skipGitPull = core.getBooleanInput('skip-git-pull')
@@ -170,7 +171,7 @@ async function run() {
       // If output file === 'false' we don't write it to file
       if (outputFile !== 'false') {
         // Generate the changelog
-        await changelog.generateFileChangelog(tagPrefix, preset, newVersion, outputFile, releaseCount, config, gitPath)
+        await changelog.generateFileChangelog(tagPrefix, preset, newVersion, outputFile, releaseCount, config, gitPath, append)
       }
 
       if (!skipCommit) {
