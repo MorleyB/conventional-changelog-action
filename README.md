@@ -32,7 +32,8 @@ This action will bump version, tag commit and generate a changelog with conventi
 - **Optional** `create-summary`: Adds the generated changelog as Action Summary. Default `false`.
 - **Optional** `pre-release`: Marks the release as pre-release. Default `false`.
 - **Optional** `pre-release-identifier`: The identifier to use for the pre-release. Default `rc`.
-- **Optional** `append-file`: Preserves changelog file by prepending releases. Default `false`.
+- **Optional** `append-file`: Preserves changelog file by appending releases. Default `false`.
+- **Optional** `reverse-file`: Change chronological order in changelog. Default `false`.
 
 ### Pre-Commit hook
 

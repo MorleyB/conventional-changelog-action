@@ -151,6 +151,11 @@ inputs:
     description: "Preserve releases in changelog"
     default: "false"
     required: false
+  
+  reverse-file:
+    description: "Change chronological order in changelog"
+    default: "false"
+    required: false
 
 outputs:
   changelog:

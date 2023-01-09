@@ -11,15 +11,17 @@ const conventionalChangelog = require('conventional-changelog')
  * @param config
  * @param gitPath
  * @param append
+ * @param reverse
  * @param skipUnstable
  * @returns {*}
  */
-const getChangelogStream = (tagPrefix, preset, version, releaseCount, config, gitPath, append, skipUnstable) => conventionalChangelog({
+const getChangelogStream = (tagPrefix, preset, version, releaseCount, config, gitPath, append, reverse, skipUnstable) => conventionalChangelog({
     preset,
     releaseCount: parseInt(releaseCount, 10),
     tagPrefix,
     config,
     append,
+    reverse,
     skipUnstable
   },
   {
@@ -45,11 +47,12 @@ module.exports = getChangelogStream
  * @param config
  * @param gitPath
  * @param append
+ * @param reverse
  * @param skipUnstable
  * @returns {Promise<string>}
  */
-module.exports.generateStringChangelog = (tagPrefix, preset, version, releaseCount, config, gitPath, append, skipUnstable) => new Promise((resolve, reject) => {
-  const changelogStream = getChangelogStream(tagPrefix, preset, version, releaseCount, config, gitPath, append, skipUnstable)
+module.exports.generateStringChangelog = (tagPrefix, preset, version, releaseCount, config, gitPath, append, reverse, skipUnstable) => new Promise((resolve, reject) => {
+  const changelogStream = getChangelogStream(tagPrefix, preset, version, releaseCount, config, gitPath, append, reverse, skipUnstable)
 
   let changelog = ''
 
@@ -71,10 +74,11 @@ module.exports.generateStringChangelog = (tagPrefix, preset, version, releaseCou
  * @param config
  * @param gitPath
  * @param append
+ * @param reverse
  * @returns {Promise<>}
  */
-module.exports.generateFileChangelog = (tagPrefix, preset, version, fileName, releaseCount, config, gitPath, append) => new Promise((resolve) => {
-  const changelogStream = getChangelogStream(tagPrefix, preset, version, releaseCount, config, gitPath, append)
+module.exports.generateFileChangelog = (tagPrefix, preset, version, fileName, releaseCount, config, gitPath, append, reverse) => new Promise((resolve) => {
+  const changelogStream = getChangelogStream(tagPrefix, preset, version, releaseCount, config, gitPath, append, reverse)
 
   changelogStream
     .pipe(fs.createWriteStream(fileName))
